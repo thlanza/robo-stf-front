@@ -15,7 +15,6 @@ import LegendasModal from '@/components/legendasModal';
 const formSchema = Yup.object({
     numero: Yup.string().required("Número da ação é requerido."),
     idAcao: Yup.string().required("Id da ação é requerida."),
-    acao: Yup.string().required("Ação é requerida.")
   });
   
 
@@ -71,12 +70,7 @@ export default function stf() {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            if(body.acao === "pdf") {
-              link.setAttribute('download', 'stf.pdf');
-            } else if(body.acao ==="excel") {
-              link.setAttribute('download', 'stf.xlsx');
-            }
-          
+            link.setAttribute('download', 'stf.pdf');
             document.body.appendChild(link);
             link.click();
           }).catch((err) => {
@@ -163,12 +157,6 @@ export default function stf() {
                 </select>
                 <br />
                 <br />
-                <p className='text-myblue'>Tipo de Arquivo</p>
-                <select id="acao" onChange={onAcaoChange} className="pb-2 pt-2 pr-10" disabled={formik.values.numero === ""}>
-                  <option disabled selected>Escolha o formato de arquivo que você quer</option>
-                  <option>excel</option>
-                  <option>pdf</option>
-                </select>
                 </p>
                 </>
      
